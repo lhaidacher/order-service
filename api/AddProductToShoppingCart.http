@@ -1,0 +1,18 @@
+###
+# @name GetShoppingCart
+GET http://{{host}}:{{port}}/carts
+
+###
+# @name PutProductIntoCart
+POST http://{{host}}:{{port}}/carts
+Content-Type: application/json
+
+{
+  "name": "HP Spectre x360",
+  "description": "HP Spectre x360 Convertible, 13.3-inch FHD touchscreen",
+  "price": 1299.99
+}
+
+###
+# @name CleanUpShoppingCart
+DELETE http://{{host}}:{{port}}/carts

@@ -1,0 +1,31 @@
+# ===================================================================
+# APPLICATION PROPERTIES
+# ===================================================================
+server:
+  port: 8080
+spring:
+  application:
+    name: order-service
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+fhk:
+  ps2:
+    ecommerce:
+      product-service: product-service
+      cart-service: cart-service
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+server:
+  port: 8092
+fhk:
+  ps2:
+    ecommerce:
+      product-service: localhost:8090
+      cart-service: localhost:8091
+

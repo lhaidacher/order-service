@@ -1,0 +1,15 @@
+###
+# @name PlaceOrder
+POST http://{{host}}:{{port}}/orders
+Content-Type: application/json
+
+{
+  "street": "Mustergasse 5b",
+  "city": "Innsbruck",
+  "zip": "6020",
+  "country": "Österreich"
+}
+
+###
+# @name GetOrders
+GET http://{{host}}:{{port}}/orders
