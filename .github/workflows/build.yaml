@@ -1,0 +1,31 @@
+name: CI with Gradle
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build-container:
+    name: CI Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+      - name: Install jdk
+        uses: actions/setup-java@v1
+        with:
+          java-version: 21
+          java-package: jdk
+      - name: Build jar
+        uses: eskatos/gradle-command-action@v1
+        with:
+          arguments: build
+      - uses: benjlevesque/short-sha@v3.0
+        id: short-sha
+        with:
+          length: 6
+      - name: JIB container build and publish
+        uses: MathieuSoysal/jib-container-publish.yml@v2.1.5
+        with:
+          PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          tag-name: ${{ steps.short-sha.outputs.sha }}
